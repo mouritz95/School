@@ -1,0 +1,22 @@
+doctype html
+html
+ head
+  title Grade Summary
+  link(rel='stylesheet', href='/stylesheets/style.css')  
+  script(type='text/javascript' src='/javascripts/school_records_updation.js')
+ body
+  h1 Grade Summary
+  p
+   div
+    div Name: #{name} 
+     button#Black(value= id,onclick = "edit_grade()" ) edit
+    div Students:
+    ul
+     each student in students
+      li 
+       a(href="/students/#{student.id}") #{student.name}
+    div Subjects:
+    ul
+     each subject in subjects
+       li 
+        a(href="/subject/#{subject.id}") #{subject.name}

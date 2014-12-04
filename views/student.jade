@@ -1,0 +1,24 @@
+doctype html
+html
+ head
+  title Student Summary
+  link(rel='stylesheet', href='/stylesheets/style.css')  
+ body
+  h1 Student Summary
+  p
+   div
+    div Name: #{name}
+    div Grade: 
+     a(href="/grades/#{grade_id}") #{grade_name}
+   div
+    table(border="4")
+     tr
+      th Subject
+      th Max
+      th Score
+     each subject in subjects
+      tr
+       td
+        a(href="/subject/#{subject.id}") #{subject.name}
+       td #{subject.maxScore}
+       td #{subject.score}
