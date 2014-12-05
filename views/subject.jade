@@ -11,6 +11,7 @@ html
    th #{subject[0].maxScore}
    th 
     a(href="/grades/#{subject[0].grade_id}") #{subject[0].grade_name}
+   button#Black( value= id,onclick = "edit_subjectDetails()" ) edit
   table(border=1 )
    th Student Name
    th Score
@@ -19,3 +20,4 @@ html
      td
       a(href="/students/#{sb.student_id}") #{sb.student_name}
      td #{sb.score}
+   

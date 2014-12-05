@@ -1,0 +1,21 @@
+date 05/12/2014
+
+	scaffold
+		1. package.json
+		2. express
+		3. sublime,
+		4. git bash, git repository,
+		5. browser
+		6. sqlite3
+		7. files and folder(for detail check yourself)
+
+	target
+		ability to change the subject summary fields
+
+	process
+		make an edit button in subject summary ===>
+		that will open a div that contain 3 text box for editing subject name , max score , grade =====>
+		create a submit button in that div for submitting the edited text  ====> 
+		it will give the value to a function which has a functionality to edit the values of subject summary =====>
+		it will replace the value of those fields in subject table of school.db ====>
+		now redirect on the same page  with new values

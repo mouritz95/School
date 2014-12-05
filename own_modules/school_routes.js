@@ -38,6 +38,7 @@ exports.get_subject_summary = function(req,res,next){
 };
 
 exports.get_grade_summary = function(req,res,next){
+	console.log("path=================>>>>>",req.query);
 	if(req.query.new_name){
 		var id = req.path[req.path.length-1];
 		var new_grade = {id:id,new_name:req.query.new_name};

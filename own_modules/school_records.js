@@ -8,7 +8,6 @@ var _getGrades = function(db,onComplete){
 var _getStudentsByGrade = function(db,onComplete){
 	_getGrades(db,function(err,grades){		
 		db.all('select * from students', function(err1,students){
-			
 			grades.forEach(function(g){
 				g.students = students.filter(function(s){return s.grade_id==g.id});
 			})			
