@@ -27,7 +27,6 @@ app.get('/grades/:id',school_routes.get_grade_summary);
 app.get('/subject/:id',school_routes.get_subject_summary);
 
 
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');

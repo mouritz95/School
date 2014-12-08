@@ -19,3 +19,13 @@ date 05/12/2014
 		it will give the value to a function which has a functionality to edit the values of subject summary =====>
 		it will replace the value of those fields in subject table of school.db ====>
 		now redirect on the same page  with new values
+
+	for test
+		write a test for edit subject summary 
+			
+			process
+				create a query which can give a object for subject,  max score and grade and check with the expected output ===>
+
+				change the newer one to the older one===>
+				then check it again with the expexted output ===>
+				then do the done

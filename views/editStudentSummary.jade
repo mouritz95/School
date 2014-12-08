@@ -1,0 +1,21 @@
+doctype html
+html
+ head
+  title Edit Student Summary
+  link(rel='stylesheet', href='/stylesheets/style.css')  
+ body
+  h1 Edit Student Summary
+  form(action='/students/#{id}' method='post')
+   | Student Name:
+   input(type='text' value = '#{name}' name='studentName' required)
+   br
+   br
+   | Grade:
+   input(type='text' value = '#{grade_name}' name='gradeName' required)
+   br
+   br
+   each sub in subjects
+    | #{sub.name}:
+    input(type="number" value='#{sub.score}' name='subId_#{sub.id}' max='#{sub.maxScore}' min='0' required)
+    br
+   input(type='submit' value='submit')

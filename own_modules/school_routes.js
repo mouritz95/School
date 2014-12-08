@@ -28,6 +28,19 @@ exports.get_student = function(req,res,next){
 };
 
 exports.get_subject_summary = function(req,res,next){
+	if(req.query.new_sub_name){
+		var id = req.path[req.path.length-1];
+		var updated_fields = {id:id,
+			new_sub_name:req.query.new_sub_name,
+			new_max_score:req.query.new_max_score,
+			new_grade:req.query.new_grade
+		};
+		school_records.editSubjectSummary(updated_fields,function(err){
+			res.writeHead(302,{"Location": "/subject/"+id});
+			res.end();
+		});
+		return;
+	}
 	school_records.getSubjectSummary(req.params.id,
 	function(err,subject){
 		if(!subject) 
@@ -38,7 +51,6 @@ exports.get_subject_summary = function(req,res,next){
 };
 
 exports.get_grade_summary = function(req,res,next){
-	console.log("path=================>>>>>",req.query);
 	if(req.query.new_name){
 		var id = req.path[req.path.length-1];
 		var new_grade = {id:id,new_name:req.query.new_name};

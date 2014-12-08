@@ -2,6 +2,8 @@ var lib = require('../own_modules/school_records');
 var assert = require('chai').assert;
 var fs = require('fs');
 var dbFileData = fs.readFileSync('tests/data/school.db.backup');
+var sqlite3 = require("sqlite3").verbose();
+var location = 'tests/data/school.db';
 //CREATE TABLE STUDENTS(name text, grade text);
 //INSERT INTO STUDENTS VALUES ('Abu','one'), ('Babu','one')
 
@@ -85,6 +87,7 @@ describe('school_records',function(){
 	describe('#getSubjectSummary',function(){
 		it('retrieves the summary of subject 1',function(done){
 			school_records.getSubjectSummary(1,function(err,subject){
+				console.log(subject)
 				assert.notOk(err);
 				assert.equal(subject[0].subject_name,'English-1');
 				assert.deepEqual(subject, [{ subject_id: 1,
@@ -99,4 +102,20 @@ describe('school_records',function(){
 			})
 		})
 	})
+
+	describe('#updateSubjectSummary',function(){
+		it('update subjects summary',function(done){
+			var new_subject = {id:2,new_sub_name:'Phoose Ball',new_grade:'2nd std',new_max_score:50};
+			school_records.editSubjectSummary(new_subject,function(err){
+				assert.notOk(err);
+				school_records.getSubjectSummary(2,function(esb,sub){
+					console.log(sub[0])
+					assert.equal(sub[0].subject_name,'Phoose Ball');
+					assert.equal(sub[0].maxScore,50);
+					// assert.equal(sub[0].grade_id,2);
+					done();
+				});
+			});
+		});		
+	});
 })

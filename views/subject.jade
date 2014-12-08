@@ -2,7 +2,9 @@ doctype html
 html
  head
   title Subject Summary
-  link(rel='stylesheet', href='/stylesheets/style.css')  
+  link(rel='stylesheet', href='/stylesheets/style.css') 
+  script(type='text/javascript' src='/javascripts/school_records_updation.js')
+   
  body
   h1 Subject Summary
   table(border=1)
@@ -11,7 +13,7 @@ html
    th #{subject[0].maxScore}
    th 
     a(href="/grades/#{subject[0].grade_id}") #{subject[0].grade_name}
-   button#Black( value= id,onclick = "edit_subjectDetails()" ) edit
+   button#Black(onclick = 'edit_subject_summary(#{subject[0].subject_id})') edit
   table(border=1 )
    th Student Name
    th Score
