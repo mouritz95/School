@@ -1,0 +1,10 @@
+html
+ head
+  title Add Student
+ body
+  form(action='/grades/#{id}' method='post') 
+   | Student Name:
+   input(type='text' name='name')
+   | MaxScore :
+   input(type='number' name  ='maxScore')
+   input(type='submit' value='submit')

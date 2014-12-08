@@ -11,6 +11,9 @@ html
     div Name: #{name} 
      button#Black(value= id,onclick = "edit_grade()" ) edit
     div Students:
+    button(type="button", onclick="location.href='/addStudent/#{id}'") Add Student
+    div Students:
+    button(type="button", onclick="location.href='/addSubject/#{id}'") Add Subject
     ul
      each student in students
       li 

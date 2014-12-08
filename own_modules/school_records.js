@@ -143,6 +143,20 @@ var _editStudentSummary = function(new_student,db,onComplete){
 	});
 };
 
+var _addStudents = function(new_student,db,onComplete){
+	var insertStudent = "insert into students ('name','grade_id') values ('"+new_student.name+"',"+new_student.grade_id+");";
+	db.run(insertStudent,function(ein){
+		onComplete(null);
+	})
+}
+
+var _addSubjects = function(new_subject,db,onComplete){
+	var insertSubject = "insert into subjects ('name','maxScore','grade_id') values ('"+new_subject.name+"',"+new_subject.maxScore+","+new_subject.grade_id+");";
+	db.run(insertSubject,function(err){
+		onComplete(null);
+	})
+}
+
 var init = function(location){	
 	var operate = function(operation){
 		return function(){
@@ -168,7 +182,9 @@ var init = function(location){
 		getSubjectSummary: operate(_getSubjectSummary),
 		edit_grade: operate(_edit_grade),
 		editSubjectSummary : operate(_editSubjectSummary),
-		editStudentSummary :operate(_editStudentSummary)
+		editStudentSummary :operate(_editStudentSummary),
+		addStudent :operate(_addStudents),
+		addSubject :operate(_addSubjects)
 	};
 
 	return records;

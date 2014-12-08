@@ -13,7 +13,7 @@ html
    br
    each sub in subjects
     | #{sub.name}:
-    input(type="text" value='#{sub.score}' name='subId_#{sub.id}' max='#{sub.maxScore}' min='0' required)
+    input(type="text" value='#{sub.score}' name='subId_#{sub.id}')
     br
     br
    input(type='submit' value='submit')

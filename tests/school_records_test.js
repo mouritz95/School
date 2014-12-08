@@ -4,6 +4,8 @@ var fs = require('fs');
 var dbFileData = fs.readFileSync('tests/data/school.db.backup');
 var sqlite3 = require("sqlite3").verbose();
 var location = 'tests/data/school.db';
+var sqlite3 = require("sqlite3").verbose();
+
 //CREATE TABLE STUDENTS(name text, grade text);
 //INSERT INTO STUDENTS VALUES ('Abu','one'), ('Babu','one')
 
@@ -104,13 +106,12 @@ describe('school_records',function(){
 
 	describe('#editSubjectSummary',function(){
 		it('edit subjects summary',function(done){
-			var new_subject = {id:2,new_sub_name:'Phoose Ball',new_grade:'2nd std',new_max_score:50};
+			var new_subject = {id:2,new_sub_name:'base_ball',new_grade:'2nd std',new_max_score:50};
 			school_records.editSubjectSummary(new_subject,function(err){
 				assert.notOk(err);
 				school_records.getSubjectSummary(2,function(esb,sub){
-					assert.equal(sub[0].subject_name,'Phoose Ball');
+					assert.equal(sub[0].subject_name,'base_ball');
 					assert.equal(sub[0].maxScore,50);
-					// assert.equal(sub[0].grade_id,2);
 					done();
 				});
 			});
@@ -133,7 +134,6 @@ describe('school_records',function(){
 					assert.deepEqual(s2.subjects,[]);
 
 					school_records.getStudentSummary(1,function(ess,s1){
-						console.log("s1=======",s1)
 						assert.equal(s1.name,'Vishnu');
 						assert.equal(s1.grade_id,'2');
 						assert.deepEqual(s1.subjects,expected);
@@ -142,5 +142,32 @@ describe('school_records',function(){
 				});
 			});
 		});
+	});
+
+	describe('#addNewStudentFromGradeSummaryPage',function(){
+		it('add new student',function(done){
+			var new_student = {name:'moti',grade_id:2};
+			school_records.addStudent(new_student,function(err){
+				assert.notOk(err);
+				school_records.getStudentSummary(8,function(est,stu){
+					assert.equal(stu.name,'moti')
+					done();
+				});
+			});
+		});		
+	});
+
+	describe('#addNewSubjectFromGradeSummaryPage',function(){
+		it('add new subject',function(done){
+			var new_subject = {name:'history',maxScore:100,grade_id:1};
+			var db = new sqlite3.Database(location);
+			school_records.addSubject(new_subject,function(err){
+				assert.notOk(err);
+				db.get('select * from subjects where id = 4',function(err,stu){
+					assert.deepEqual(stu.name,'history');
+					done();
+				});
+			});
+		});		
 	});
 })

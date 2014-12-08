@@ -11,4 +11,4 @@ var edit_subject_summary = function(id){
 	var url = window.location.href;
 	window.location.href = url+'?new_sub_name='+new_sub_name+
 	'&new_max_score='+new_max_score+'&new_grade='+new_grade;
-}
+};

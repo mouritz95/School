@@ -87,6 +87,33 @@ exports.edit_student_summary = function(req,res,next){
 		}
 		res.writeHead(302,{"Location": "/students/"+new_student.studentId});
 		res.end();
-
 	})
 };
+
+exports.addStudent = function(req,res,next){
+	res.render('addStudent',{id:req.params.id});
+};
+
+exports.add_student = function(req,res,next){
+	var new_student = req.body;
+	new_student.grade_id = req.params.id;
+	school_records.addStudent(new_student,function(err){
+		res.writeHead(302,{"Location": "/grades/"+new_student.grade_id});
+		res.end();
+	});
+};
+
+exports.addSubject = function(req,res,next){
+	res.render('addSubject',{id:req.params.id});
+};
+
+exports.add_subject = function(req,res,next){
+	var new_subject = req.body;
+	new_subject.grade_id = req.params.id;
+	school_records.addSubject(new_subject,function(err){
+		res.writeHead(302,{"Location": "/grades/"+new_subject.grade_id});
+		res.end();
+	});
+};
+
+
