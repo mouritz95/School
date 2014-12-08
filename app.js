@@ -25,6 +25,8 @@ app.get('/subjects',school_routes.get_subjects);
 app.get('/students/:id',school_routes.get_student);
 app.get('/grades/:id',school_routes.get_grade_summary);
 app.get('/subject/:id',school_routes.get_subject_summary);
+app.get('/editStudentSummary/:id',school_routes.editStudentSummary)
+app.post('/students/:id',school_routes.edit_student_summary);
 
 
 // catch 404 and forward to error handler

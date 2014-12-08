@@ -1,21 +1,19 @@
-doctype html
 html
  head
-  title Edit Student Summary
-  link(rel='stylesheet', href='/stylesheets/style.css')  
+  title Edut Student Summary
  body
-  h1 Edit Student Summary
-  form(action='/students/#{id}' method='post')
+  form(action='/students/#{id}' method='post') 
    | Student Name:
-   input(type='text' value = '#{name}' name='studentName' required)
+   input(type='text' value='#{name}' name='studentName')
    br
    br
-   | Grade:
-   input(type='text' value = '#{grade_name}' name='gradeName' required)
+   | Grade
+   input(type='text' value='#{grade_name}' name='gradeName')
    br
    br
    each sub in subjects
     | #{sub.name}:
-    input(type="number" value='#{sub.score}' name='subId_#{sub.id}' max='#{sub.maxScore}' min='0' required)
+    input(type="text" value='#{sub.score}' name='subId_#{sub.id}' max='#{sub.maxScore}' min='0' required)
+    br
     br
    input(type='submit' value='submit')
