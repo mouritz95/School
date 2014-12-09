@@ -5,7 +5,7 @@ html
   form(action='/subject/#{subject[0].subject_id}' method='post') 
    each sub in subject
     | #{sub.student_name}:
-    input(type="number" name='score' max='#{sub.maxScore}' min='0' required)
+    input(type="number" name='score' max='#{sub.maxScore}' min='0')
     input(type="hidden" value='#{sub.student_id}' name='student_id')
     br
     br

@@ -115,11 +115,14 @@ exports.add_subject = function(req,res,next){
 exports.addScore = function(req,res,next){
 	school_records.getSubjectSummary(req.params.id,function(err,subject){
 		var newStudent = subject.filter(function(student){
-			if(student.score == 0)
+		 	if(student.score == 0)
 				return true;
 		})
-		if(!subject) 
-			next();
+		if(newStudent.length==0) {
+			res.writeHead(302,{"Location": "/subject/"+req.params.id});
+			res.end();
+			return;
+		}	
 		else
 			res.render('addScore',{subject:newStudent});
 	});
