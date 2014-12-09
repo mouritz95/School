@@ -146,7 +146,7 @@ describe('school_records',function(){
 
 	describe('#addNewStudentFromGradeSummaryPage',function(){
 		it('add new student',function(done){
-			var new_student = {name:'moti',grade_id:2};
+			var new_student = {name:'moti',grade_id:1};
 			school_records.addStudent(new_student,function(err){
 				assert.notOk(err);
 				school_records.getStudentSummary(8,function(est,stu){
@@ -170,4 +170,5 @@ describe('school_records',function(){
 			});
 		});		
 	});
+
 })

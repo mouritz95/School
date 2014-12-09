@@ -10,9 +10,9 @@ html
    div
     div Name: #{name} 
      button#Black(value= id,onclick = "edit_grade()" ) edit
-    div Students:
+    div Student:
     button(type="button", onclick="location.href='/addStudent/#{id}'") Add Student
-    div Students:
+    div Subject:
     button(type="button", onclick="location.href='/addSubject/#{id}'") Add Subject
     ul
      each student in students

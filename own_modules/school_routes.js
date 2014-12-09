@@ -81,10 +81,6 @@ exports.edit_student_summary = function(req,res,next){
 	var new_student = req.body;
 	new_student.studentId = req.params.id;
 	school_records.editStudentSummary(new_student,function(err){
-		if(err){
-			res.end("Invalid Input");
-			return;			
-		}
 		res.writeHead(302,{"Location": "/students/"+new_student.studentId});
 		res.end();
 	})
