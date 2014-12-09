@@ -172,6 +172,13 @@ var _addSubjects = function(new_subject,db,onComplete){
 	})
 }
 
+var _addScores = function(new_score,db,onComplete){
+	var insert_score = "update scores set score="+new_score.score+" where student_id="+new_score.student_id+" and subject_id="+new_score.subject_id+";";
+	db.run(insert_score,function(err){
+		onComplete(null);
+	});
+};
+
 var init = function(location){	
 	var operate = function(operation){
 		return function(){
@@ -199,7 +206,8 @@ var init = function(location){
 		editSubjectSummary : operate(_editSubjectSummary),
 		editStudentSummary :operate(_editStudentSummary),
 		addStudent :operate(_addStudents),
-		addSubject :operate(_addSubjects)
+		addSubject :operate(_addSubjects),
+		addScores :operate(_addScores)
 	};
 
 	return records;

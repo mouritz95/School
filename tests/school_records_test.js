@@ -170,5 +170,17 @@ describe('school_records',function(){
 			});
 		});		
 	});
-
+	describe('#addScoreForAStudentFromSubjectSummaryPage',function(){
+		it('add score for a student in subject summary page',function(done){
+			var new_score = {student_id:1,subject_id:3,score:45};
+			var db = new sqlite3.Database(location);
+			school_records.addScores(new_score,function(err){
+				assert.notOk(err);
+				db.get('select * from scores where student_id=1 and subject_id=3',function(esc,score){
+					assert.deepEqual(new_score,score);
+					done();
+				})
+			})
+		})
+	})
 })

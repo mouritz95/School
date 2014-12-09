@@ -112,4 +112,24 @@ exports.add_subject = function(req,res,next){
 	});
 };
 
+exports.addScore = function(req,res,next){
+	school_records.getSubjectSummary(req.params.id,function(err,subject){
+		var newStudent = subject.filter(function(student){
+			if(student.score == 0)
+				return true;
+		})
+		if(!subject) 
+			next();
+		else
+			res.render('addScore',{subject:newStudent});
+	});
+};
 
+exports.add_score = function(req,res,next){
+	var new_score = req.body;
+	new_score.subject_id = req.params.id;
+	school_records.addScores(new_score,function(err){
+		res.writeHead(302,{"Location": "/subject/"+new_score.subject_id});
+		res.end();
+	});
+};

@@ -22,4 +22,5 @@ html
      td
       a(href="/students/#{sb.student_id}") #{sb.student_name}
      td #{sb.score}
+  button(type="button" onclick = 'location.href="/addScore/#{subject[0].subject_id}"') addScore
    
