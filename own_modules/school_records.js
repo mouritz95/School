@@ -139,10 +139,8 @@ var showError = function(err,data,onComplete){
 	}
 }
 
-var _editStudentSummary = function(new_student,db,onComplete){
-	var queryForGradeId = "select id from grades where name='"+new_student.gradeName+"'";
-	db.get(queryForGradeId,function(egr,grade){
-		showError(egr,grade,onComplete);
+var editSubSummaryQuery = function(new_student,grade,egr,db,onComplete){
+	showError(egr,grade,onComplete);
 		new_student.gradeId = grade.id;
 		var grade_query = "update students set grade_id='" + new_student.gradeId+
 		"' where id="+new_student.studentId;
@@ -151,7 +149,13 @@ var _editStudentSummary = function(new_student,db,onComplete){
 		var student_query = "update students set name='"+new_student.studentName+"' where id="+
 						new_student.studentId;
 
-		runAndShowError(student_query,db);						
+		 runAndShowError(student_query,db);						
+}
+
+var _editStudentSummary = function(new_student,db,onComplete){
+	var queryForGradeId = "select id from grades where name='"+new_student.gradeName+"'";
+	db.get(queryForGradeId,function(egr,grade){
+		editSubSummaryQuery(new_student,grade,egr,db,onComplete)
 		var ids = getSubjectIds(new_student);
 		ids.forEach(function(id,index,array){
 			var score_query = "update scores set score='"+new_student["subId_"+id]+
@@ -167,19 +171,22 @@ var executeAsync = function(db,query,index,array,onComplete){
 	})
 };
 
-// var addStudentQueries
-
-var _addStudents = function(new_student,db,onComplete){
+var addStudentQueries = function(new_student){
 	var insertStudent = "insert into students ('name','grade_id') values ('"+
 		new_student.name+"',"+new_student.grade_id+");";
 
 	var get_ids = "select id from students order by id desc limit 1;";
 	var subject_query = "select id from subjects where grade_id = "+new_student.grade_id;
+	return [insertStudent,get_ids,subject_query];
 	
-	db.run(insertStudent,function(ein){
-		db.get(get_ids , function(err, id){
+}
+
+var _addStudents = function(new_student,db,onComplete){
+	var addStudQuery = addStudentQueries(new_student);
+	db.run(addStudQuery[0],function(ein){
+		db.get(addStudQuery[1], function(err, id){
 			new_student.id = id.id;
-			db.all(subject_query , function(err , subject){
+			db.all(addStudQuery[2] , function(err , subject){
 				new_student.subject_id = subject.map(function(sub){
 					 return sub.id;
 				})
