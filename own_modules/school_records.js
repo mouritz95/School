@@ -114,8 +114,8 @@ var _editSubjectSummary =function(new_values,db,onComplete){
 		new_values.grade_id = grade.id;
 		db.run(subject_query,function(err){
 			err && console.log(err);
-			var updateSubject = 'update subjects set grade_i/ d='+new_values.grade_id+
-							" where id="+new_values.id
+			var updateSubject = 'update subjects set grade_id='+new_values.grade_id+
+							" where id="+new_values.id;
 			runQuery(updateSubject,db,onComplete);
 		});
 	});

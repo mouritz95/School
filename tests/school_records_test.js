@@ -113,13 +113,14 @@ describe('school_records',function(){
 					assert.deepEqual(grade.name,new_grade.new_name);
 					done();
 				});
-			})
-		})
+			});
+		});
 	})
 
 	describe('#editSubjectSummary',function(){
 		it('edit subjects summary',function(done){
-			var new_subject = {id:2,new_sub_name:'base_ball',new_grade:'2nd std',new_max_score:50};
+			var new_subject = {id:2,new_sub_name:'base_ball',
+							new_grade:'2nd std',new_max_score:50};
 			school_records.editSubjectSummary(new_subject,function(err){
 				assert.notOk(err);
 				school_records.getSubjectSummary(2,function(esb,sub){
