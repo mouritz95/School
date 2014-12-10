@@ -31,8 +31,10 @@ app.get('/addStudent/:id',school_routes.addStudent);
 app.post('/grades/:id',school_routes.add_student);
 app.get('/addSubject/:id',school_routes.addSubject);
 app.post('/grade/:id',school_routes.add_subject);
-app.get('/addScore/:id',school_routes.addScore);
+app.get('/editScore/:id',school_routes.addScore);
 app.post('/subject/:id',school_routes.add_score);
+app.get('/editSubjectSummary/:id',school_routes.editSubjectSummary);
+app.post('/subjects/:id',school_routes.edit_subject_summary);
 
 
 

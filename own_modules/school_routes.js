@@ -41,8 +41,7 @@ exports.get_subject_summary = function(req,res,next){
 		});
 		return;
 	}
-	school_records.getSubjectSummary(req.params.id,
-	function(err,subject){
+	school_records.getSubjectSummary(req.params.id,function(err,subject){
 		if(!subject) 
 			next();
 		else 
@@ -54,7 +53,7 @@ exports.get_grade_summary = function(req,res,next){
 	if(req.query.new_name){
 		var id = req.path[req.path.length-1];
 		var new_grade = {id:id,new_name:req.query.new_name};
-		school_records.edit_grade(new_grade,function(err){
+		school_records.editGrade(new_grade,function(err){
 			res.writeHead(302,{"Location": "/grades/"+id});
 			res.end();
 		});
@@ -114,17 +113,7 @@ exports.add_subject = function(req,res,next){
 
 exports.addScore = function(req,res,next){
 	school_records.getSubjectSummary(req.params.id,function(err,subject){
-		var newStudent = subject.filter(function(student){
-		 	if(student.score == 0)
-				return true;
-		})
-		if(newStudent.length==0) {
-			res.writeHead(302,{"Location": "/subject/"+req.params.id});
-			res.end();
-			return;
-		}	
-		else
-			res.render('addScore',{subject:newStudent});
+		res.render('editScore',{subject:subject});
 	});
 };
 
@@ -135,4 +124,22 @@ exports.add_score = function(req,res,next){
 		res.writeHead(302,{"Location": "/subject/"+new_score.subject_id});
 		res.end();
 	});
+};
+
+exports.editSubjectSummary = function(req,res,next){
+	school_records.getSubjectSummary(req.params.id,function(err,subject){
+		if(!subject) 
+			next();
+		else 
+			res.render('editSubjectSummary',{subject:subject});
+	});
+};
+
+exports.edit_subject_summary = function(req,res,next){
+	var new_values = req.body;
+	new_values.subjectId = req.params.id;
+	school_records.editSubjectSummary(new_values,function(err){
+		res.writeHead(302,{"Location": "/subject/"+new_values.subjectId});
+		res.end();
+	})
 };

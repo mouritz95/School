@@ -12,8 +12,11 @@ html
    th #{subject[0].subject_name}
    th #{subject[0].maxScore}
    th 
-    a(href="/grades/#{subject[0].grade_id}") #{subject[0].grade_name}
-   button#Black(onclick = 'edit_subject_summary(#{subject[0].subject_id})') edit
+    a(href="/grades/#{subject[0].grade_id}") #{subject[0].grade_name} 
+  br
+  button(onclick = 'location.href="/editSubjectSummary/#{subject[0].subject_id}"') EDIT-SUBJECT-SUMMARY
+  br
+  br
   table(border=1 )
    th Student Name
    th Score
@@ -22,5 +25,6 @@ html
      td
       a(href="/students/#{sb.student_id}") #{sb.student_name}
      td #{sb.score}
-  button(type="button" onclick = 'location.href="/addScore/#{subject[0].subject_id}"') addScore
+  br
+  button(type="button" onclick = 'location.href="/editScore/#{subject[0].subject_id}"') EDIT-SCORE
    

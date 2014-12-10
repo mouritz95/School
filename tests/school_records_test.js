@@ -104,6 +104,19 @@ describe('school_records',function(){
 		})
 	})
 
+	describe("#editGrade",function(){
+		it("grade can't be null",function(done){
+			var new_grade = {new_name:"class 3",id:1};
+			var db = new sqlite3.Database(location);
+			school_records.editGrade(new_grade,function(err){
+				db.get('select name from grades where id = 1',function(err,grade){
+					assert.deepEqual(grade.name,new_grade.new_name);
+					done();
+				});
+			})
+		})
+	})
+
 	describe('#editSubjectSummary',function(){
 		it('edit subjects summary',function(done){
 			var new_subject = {id:2,new_sub_name:'base_ball',new_grade:'2nd std',new_max_score:50};
@@ -125,7 +138,6 @@ describe('school_records',function(){
 			var expected = [{id:1,name:'English-1',score:20,maxScore:100},
 							{id:2,name:'Maths-1',score:23,maxScore:100},
 							{id:3,name:'Moral Science',score:50,maxScore:50}];
-
 			school_records.editStudentSummary(newStudent,function(err){
 				assert.notOk(err);
 				school_records.getStudentSummary(2,function(ess,s2){

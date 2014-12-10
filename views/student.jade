@@ -8,8 +8,10 @@ html
   p
    div
     div Name: #{name}
+    br
     div Grade: 
      a(href="/grades/#{grade_id}") #{grade_name}
+    br
    div
     table(border="4")
      tr
@@ -22,4 +24,4 @@ html
         a(href="/subject/#{subject.id}") #{subject.name}
        td #{subject.maxScore}
        td #{subject.score}
-  button(type="button", onclick="location.href='/editStudentSummary/#{id}'") Edit
+  button(type="button", onclick="location.href='/editStudentSummary/#{id}'") EDIT-STUDENT-SUMMARY

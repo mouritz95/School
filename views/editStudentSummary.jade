@@ -1,6 +1,7 @@
 html
  head
   title Edit Student Summary
+  h2 Edit Student Summary
  body
   form(action='/students/#{id}' method='post') 
    | Student Name:
@@ -13,7 +14,7 @@ html
    br
    each sub in subjects
     | #{sub.name}:
-    input(type="text" value='#{sub.score}' name='subId_#{sub.id}' max='#{sub.maxScore}' min='0')
+    input(type="number" value='#{sub.score}' name='subId_#{sub.id}' max='#{sub.maxScore}' min='0' required)
     br
     br
    input(type='submit' value='submit')

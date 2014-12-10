@@ -1,0 +1,16 @@
+html
+ head
+  link(rel='stylesheet', href='/stylesheets/style.css')  
+  title Edit Student Summary
+  h1 Edit Student Summary
+ body
+  form(action='/subject/#{subject[0].subject_id}' method='post') 
+   p Student-Name
+   select(name='student_id')
+    each sub in subject
+     option(value='#{sub.student_id}') #{sub.student_name}:
+   p New-Score  
+   input(id='score' type="number" name='score' max='#{subject[0].maxScore}' min='0' required)
+   br
+   br
+   input(type='submit' value='submit')

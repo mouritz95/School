@@ -1,0 +1,19 @@
+html
+ head
+  title Edit Student Summary
+ body
+  form(action='/subjects/#{subject[0].subject_id}' method='post') 
+   | Subject Name:
+   input(type='text' value='#{subject[0].subject_name}' name='new_sub_name')
+   br
+   br
+   | Max Score:
+   input(type='text' value='#{subject[0].maxScore}' name='new_max_score')
+   br
+   br
+   | Grade
+   input(type='text' value='#{subject[0].grade_name}' name='new_grade')
+   input(type='hidden' value='#{subject[0].subject_id}' name='id')
+   br
+   br
+   input(type='submit' value='submit')

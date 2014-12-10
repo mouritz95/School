@@ -9,17 +9,18 @@ html
   p
    div
     div Name: #{name} 
-     button#Black(value= id,onclick = "edit_grade()" ) edit
+     button#Black(value= id,onclick = "edit_grade()" ) EDIT-GRADE
     div Student:
-    button(type="button", onclick="location.href='/addStudent/#{id}'") Add Student
-    div Subject:
-    button(type="button", onclick="location.href='/addSubject/#{id}'") Add Subject
     ul
      each student in students
       li 
        a(href="/students/#{student.id}") #{student.name}
+    button(type="button", onclick="location.href='/addStudent/#{id}'") ADD-STUDENT
+    br
+    br
     div Subjects:
     ul
      each subject in subjects
        li 
         a(href="/subject/#{subject.id}") #{subject.name}
+    button(type="button", onclick="location.href='/addSubject/#{id}'") ADD-SUBJECT

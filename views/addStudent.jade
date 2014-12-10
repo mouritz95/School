@@ -1,8 +1,11 @@
 html
  head
   title Add Student
+  h2 Add Student
  body
   form(action='/grades/#{id}' method='post') 
    | Student Name:
    input(type='text' name='name')
+   br
+   br
    input(type='submit' value='submit')
